@@ -36,7 +36,7 @@ async def handle_message(message):
         )
 
         """Send message to parser for processing"""
-        parser_url = os.environ['PARSER_URL']
+        parser_url = os.environ.get('PARSER_URL')
         if not parser_url:
             parser_url = 'http://localhost:5000/parse/'
 
@@ -78,10 +78,10 @@ asyncio_logger.setLevel(logging.ERROR)
 new_loop = asyncio.new_event_loop()
 new_loop.set_debug(True)
 
-broker_address = os.environ['BROKER_ADDRESS']
+broker_address = os.environ.get('BROKER_ADDRESS')
 if not broker_address:
     broker_address = 'mqtt.greeniot.it.uu.se'
-mqtt_topic = os.environ['MQTT_TOPIC']
+mqtt_topic = os.environ.get('MQTT_TOPIC')
 if not mqtt_topic:
     mqtt_topic = '#'
 client_name = uuid.uuid4().hex[:10]
